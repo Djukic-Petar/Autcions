@@ -1,0 +1,4 @@
+http://dp130634.azurewebsites.net/
+
+
+Ceo projekat ce biti donesen na USB-u, jer forma za predaju ne moze da primi vise od 7MB.

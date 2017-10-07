@@ -1,0 +1,61 @@
+﻿@model PagedList.IPagedList<IEP_Petar.Models.Order>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Orders";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Orders</h4>
+    <hr />
+
+    <table>
+        <tr>
+            <th style="padding: 10px;">                 Date:                 </th>
+            <th style="padding: 10px;">                 Amount:                 </th>
+            <th style="padding: 10px;">                 Status:                 </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @{
+                    <td style="padding: 10px;">
+                        @item.Time
+                    </td>
+
+                    <td style="padding: 10px;">                                                    
+                        @item.Tokens
+                    </td>
+
+                    <td style="padding: 10px;">
+                        @if (item.Status == 1)
+                        {
+                            <font color="#f4d142" style="font-weight:bold;">Pending</font>
+                        }
+                        else
+                        {
+                            <font color="green" style="font-weight:bold;">Approved</font>
+                        }
+                    </td>
+                }
+            </tr>
+                            }
+    </table>
+
+    @if ((bool)ViewData["paginacija"])
+    {
+        <text><br />Page
+            @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+            of
+            @Model.PageCount
+        </text>
+
+        @Html.PagedListPager(Model, page => Url.Action("List",
+       new { page }))
+
+    }
+
+</div>
